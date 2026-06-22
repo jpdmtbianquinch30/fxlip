@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FXLIP · Création & Design · Sénégal</title>
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & VARIABLES ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e0c;
+            --bg-secondary: rgba(255, 255, 255, 0.04);
+            --text-primary: #eef3f0;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent: #00b894;
+            --accent-glow: 0 0 25px rgba(0, 184, 148, 0.25);
+            --border-color: rgba(0, 184, 148, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --toggle-bg: #1e2a26;
+            --toggle-icon: #f1c40f;
+            --bg-gradient-1: #0a0e0c;
+            --bg-gradient-2: #0f1814;
+            --testimonial-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f4f7f6;
+            --bg-secondary: rgba(0, 0, 0, 0.02);
+            --text-primary: #1a2a24;
+            --text-secondary: rgba(0, 0, 0, 0.6);
+            --accent: #007a63;
+            --accent-glow: 0 0 20px rgba(0, 122, 99, 0.15);
+            --border-color: rgba(0, 122, 99, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --toggle-bg: #d0ddd8;
+            --toggle-icon: #b8860b;
+            --bg-gradient-1: #eaf0ee;
+            --bg-gradient-2: #dde6e2;
+            --testimonial-bg: rgba(255, 255, 255, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ---------- FOND ANIMÉ ---------- */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ---------- PARTICULES ---------- */
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.06;
+            animation: floatParticle 18s infinite alternate ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 5%;
+            animation-duration: 22s;
+        }
+        .particle:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            right: 8%;
+            animation-duration: 26s;
+            animation-delay: -5s;
+        }
+        .particle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 60%;
+            animation-duration: 30s;
+            animation-delay: -10s;
+            opacity: 0.04;
+        }
+        .particle:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-duration: 20s;
+            animation-delay: -3s;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -40px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 30px) scale(0.9);
+            }
+            100% {
+                transform: translate(40px, 20px) scale(1.05);
+            }
+        }
+
+        /* ---------- CONTENEUR ---------- */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- EN-TÊTE ---------- */
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: var(--accent-glow);
+            transition: transform 0.4s ease;
+        }
+
+        .logo-img:hover {
+            transform: rotate(-6deg) scale(1.05);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-shadow: var(--accent-glow);
+        }
+
+        .logo-text small {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: -4px;
+        }
+
+        .theme-toggle {
+            background: var(--toggle-bg);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--toggle-icon);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* ---------- BANDEAU D'ACCUEIL (message + compteur + réseaux) ---------- */
+        .welcome-banner {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem 3rem;
+        }
+
+        .welcome-message {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .welcome-message i {
+            color: var(--accent);
+            font-size: 1.4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .visitor-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-secondary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .visitor-counter i {
+            color: var(--accent);
+        }
+
+        .visitor-counter span {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .socials-banner {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .socials-banner .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .socials-banner .social-link:hover {
+            transform: translateY(-4px) scale(1.1);
+            color: var(--accent);
+            box-shadow: var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: var(--accent-glow);
+            letter-spacing: 6px;
+            line-height: 1.1;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            margin-top: 1.2rem;
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .hero .flag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            background: var(--card-bg);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--accent);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero .flag i {
+            margin-right: 8px;
+        }
+
+        /* ---------- SERVICES ---------- */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.8rem;
+            margin: 3rem 0 4rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2rem 1.2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: var(--shadow);
+            animation: floatCard 6s ease-in-out infinite alternate;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: -1.5s;
+        }
+        .service-card:nth-child(3) {
+            animation-delay: -3s;
+        }
+        .service-card:nth-child(4) {
+            animation-delay: -4.5s;
+        }
+
+        @keyframes floatCard {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-14px) scale(1.02);
+            box-shadow: 0 0 35px var(--accent-glow);
+            border-color: var(--accent);
+            animation-play-state: paused;
+        }
+
+        .service-card i {
+            font-size: 2.6rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover i {
+            transform: rotateY(180deg) scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* ---------- POURQUOI ---------- */
+        .why-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .why-section h2 {
+            font-size: 1.7rem;
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .why-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .why-item:hover {
+            transform: scale(1.05);
+        }
+
+        .why-item i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+
+        .why-item span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ---------- TÉMOIGNAGES (CARROUSEL) ---------- */
+        .testimonials-section {
+            margin: 3rem 0;
+            padding: 0.5rem;
+        }
+
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 1.7rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            background: var(--testimonial-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: background 0.5s ease;
+        }
+
+        .testimonial-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .testimonial-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.2rem;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            padding: 0.5rem;
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            position: relative;
+            pointer-events: all;
+        }
+
+        .testimonial-slide.exit {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+        }
+
+        .avatar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            opacity: 0.6;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .testimonial-slide.active .avatar {
+            transform: rotateY(0deg) scale(1);
+        }
+
+        .testimonial-slide:not(.active) .avatar {
+            transform: rotateY(90deg) scale(0.8);
+        }
+
+        .testimonial-content {
+            max-width: 600px;
+        }
+
+        .testimonial-content .quote {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-weight: 400;
+            font-style: italic;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .testimonial-content .quote::before {
+            content: '\201C';
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            left: -0.5rem;
+            top: -1.2rem;
+            opacity: 0.4;
+            font-family: serif;
+        }
+
+        .testimonial-content .quote::after {
+            content: '\201D';
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            right: -0.5rem;
+            bottom: -2rem;
+            opacity: 0.4;
+            font-family: serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-author .name {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+        }
+
+        .testimonial-author .location {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .testimonial-author .service-tag {
+            display: inline-block;
+            margin-top: 0.3rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            align-self: center;
+        }
+
+        /* Indicateurs */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: var(--accent-glow);
+            transform: scale(1.2);
+        }
+
+        .dot:hover {
+            transform: scale(1.3);
+            border-color: var(--accent);
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem 2rem;
+            margin: 3rem 0 2rem;
+            padding: 2rem 1.8rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            transition: 0.3s ease;
+            font-weight: 400;
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--accent);
+            width: 1.8rem;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.8rem;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--accent-glow);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ---------- RÉSEAUX SOCIAUX (bas) ---------- */
+        .socials-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .social-link {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-6px) scale(1.08);
+            color: var(--accent);
+            box-shadow: var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        /* ---------- DON ---------- */
+        .donate-wrapper {
+            text-align: center;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .donate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 2.5rem;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--accent-glow);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .donate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+
+        /* ---------- POPUP ---------- */
+        .popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .popup-content {
+            background: var(--bg-primary);
+            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            border: 1px solid var(--accent);
+            text-align: center;
+            width: 340px;
+            max-width: 90%;
+            box-shadow: var(--shadow);
+        }
+
+        .popup-content h2 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wave-number {
+            font-size: 1.6rem;
+            margin: 1.2rem 0;
+            color: var(--accent);
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .popup-btn {
+            padding: 0.7rem 2rem;
+            border: none;
+            border-radius: 50px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 0.3rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .popup-btn.close {
+            background: #444;
+            color: #fff;
+        }
+
+        [data-theme="light"] .popup-btn.close {
+            background: #ccc;
+            color: #000;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .footer i {
+            color: var(--accent);
+            margin: 0 4px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: 3px;
+            }
+            .services {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .service-card {
+                padding: 1.5rem 0.8rem;
+            }
+            .service-card i {
+                font-size: 2rem;
+            }
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .testimonials-carousel {
+                padding: 1.5rem 1rem;
+                min-height: 300px;
+            }
+            .testimonial-content .quote {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            .testimonial-content .quote::before,
+            .testimonial-content .quote::after {
+                font-size: 2rem;
+            }
+            .contact-section {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+                padding: 1.5rem;
+            }
+            .contact-item {
+                justify-content: center;
+            }
+            .btn-primary {
+                justify-content: center;
+            }
+            .header-bar {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            .avatar {
+                width: 64px;
+                height: 64px;
+                font-size: 1.6rem;
+            }
+            .welcome-banner {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            .welcome-message {
+                font-size: 1rem;
+            }
+            .socials-banner .social-link {
+                width: 42px;
+                height: 42px;
+                font-size: 1.3rem;
+            }
+            .visitor-counter {
+                font-size: 0.8rem;
+                padding: 0.3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .services {
+                grid-template-columns: 1fr;
+            }
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .socials-bottom .social-link {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+            }
+            .testimonials-carousel {
+                min-height: 340px;
+                padding: 1rem;
+            }
+            .socials-banner .social-link {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PARTICULES DE FOND -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+
+        <!-- BARRE HAUTE : LOGO + TOGGLE -->
+        <header class="header-bar">
+            <a href="#" class="logo-area">
+                <img src="pp.jpg" alt="FXLIP" class="logo-img" />
+                <span class="logo-text">
+                    FXLIP
+                    <small>CRÉATION · SÉNÉGAL</small>
+                </span>
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <!-- BANDEAU D'ACCUEIL : Message + Compteur + Réseaux -->
+        <div class="welcome-banner">
+            <div class="welcome-message">
+                <i class="fas fa-bell"></i>
+                <span>N'oubliez pas de vous abonner à nos réseaux !</span>
+            </div>
+            <div class="visitor-counter">
+                <i class="fas fa-eye"></i>
+                <span id="visitorCount">0</span> visiteurs
+            </div>
+            <div class="socials-banner">
+                <a class="social-link" href="https://www.tiktok.com/@fxlip_3003" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a class="social-link" href="https://www.instagram.com/fxlip_3003/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="social-link" href="https://x.com/fxlip__3003" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a class="social-link" href="https://www.youtube.com/@fxlip_3003" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1>FXLIP</h1>
+            <div class="sub">Développement · Design · Création Digitale</div>
+            <div class="tagline">
+                Nous créons des expériences numériques modernes, des visuels impactants
+                et des solutions adaptées à vos besoins, du Sénégal au monde.
+            </div>
+            <div class="flag">
+                <i class="fas fa-map-pin"></i> Basé au Sénégal · 🇸🇳
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="services">
+            <div class="service-card">
+                <i class="fas fa-globe"></i>
+                <h3>Site Web</h3>
+                <p>Sites vitrines, portfolios, e‑commerce et solutions sur mesure.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-palette"></i>
+                <h3>Design Graphique</h3>
+                <p>Affiches, flyers, publicités et branding professionnel.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-video"></i>
+                <h3>Montage Vidéo</h3>
+                <p>TikTok, Reels, YouTube Shorts et vidéos pro.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Collaboration</h3>
+                <p>Projets avec créateurs, startups et entreprises.</p>
+            </div>
+        </section>
+
+        <!-- POURQUOI NOUS -->
+        <section class="why-section">
+            <h2>Pourquoi travailler avec FXLIP ?</h2>
+            <div class="why-grid">
+                <div class="why-item"><i class="fas fa-rocket"></i><span>Design moderne & pro</span></div>
+                <div class="why-item"><i class="fas fa-bullseye"></i><span>Solutions sur mesure</span></div>
+                <div class="why-item"><i class="fas fa-comment-dots"></i><span>Communication rapide</span></div>
+                <div class="why-item"><i class="fas fa-star"></i><span>Travail sérieux & créatif</span></div>
+                <div class="why-item"><i class="fas fa-hand-holding-heart"></i><span>Accompagnement personnalisé</span></div>
+                <div class="why-item"><i class="fas fa-heart" style="color: #e74c3c;"></i><span>100% sénégalais</span></div>
+            </div>
+        </section>
+
+        <!-- TÉMOIGNAGES -->
+        <section class="testimonials-section">
+            <h2>Ils nous font confiance</h2>
+            <div class="testimonials-carousel" id="testimonialCarousel">
+                <div class="testimonial-track">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide active" data-index="0">
+                        <div class="avatar-wrapper">
+                            <div class="avatar" style="background: linear-gradient(135deg, #f6d365, #fda085);">AW</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="quote">FXLIP a transformé mon idée en un site web magnifique. Ma clientèle a triplé en un mois ! Un vrai professionnel.</div>
+                            <div class="testimonial-author">
+                                <span class="name">Awa Diop</span>
+                                <span class="location">Dakar, Sénégal</span>
+                                <span class="service-tag">Site Vitrine</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide" data-index="1">
+                        <div class="avatar-wrapper">
+                            <div class="avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">MD</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="quote">Des designs qui sortent de l'ordinaire ! Les affiches pour mon restaurant attirent tous les regards. Merci FXLIP.</div>
+                            <div class="testimonial-author">
+                                <span class="name">Mamadou Diallo</span>
+                                <span class="location">Thiès, Sénégal</span>
+                                <span class="service-tag">Design Graphique</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide" data-index="2">
+                        <div class="avatar-wrapper">
+                            <div class="avatar" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">FD</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="quote">Mes Reels TikTok sont devenus viraux grâce au montage dynamique de FXLIP. Je recommande les yeux fermés.</div>
+                            <div class="testimonial-author">
+                                <span class="name">Fatou Diouf</span>
+                                <span class="location">Saly, Sénégal</span>
+                                <span class="service-tag">Montage Vidéo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="testimonial-slide" data-index="3">
+                        <div class="avatar-wrapper">
+                            <div class="avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">CN</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="quote">Une application fluide et intuitive. FXLIP a su comprendre mes besoins et les a dépassés. Excellent travail !</div>
+                            <div class="testimonial-author">
+                                <span class="name">Cheikh Ndiaye</span>
+                                <span class="location">Saint-Louis, Sénégal</span>
+                                <span class="service-tag">Application Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="contact-section">
+            <a href="mailto:peoplechoicesn@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i> peoplechoicesn@gmail.com
+            </a>
+            <a href="https://wa.me/221707672792" target="_blank" class="contact-item">
+                <i class="fab fa-whatsapp"></i> +221 70 767 27 92
+            </a>
+            <a href="mailto:peoplechoicesn@gmail.com" class="btn-primary">
+                <i class="fas fa-paper-plane"></i> Me contacter
+            </a>
+            <a href="https://wa.me/221707672792" target="_blank" class="btn-primary btn-outline">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </section>
+
+        <!-- RÉSEAUX SOCIAUX (bas) -->
+        <div class="socials-bottom">
+            <a class="social-link" href="https://www.tiktok.com/@fxlip_3003" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a class="social-link" href="https://www.instagram.com/fxlip_3003/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="social-link" href="https://x.com/fxlip__3003" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a class="social-link" href="https://www.youtube.com/@fxlip_3003" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <!-- DON -->
+        <div class="donate-wrapper">
+            <button class="donate-btn" onclick="openPopup()">
+                <i class="fas fa-heart" style="color: #ff6b6b;"></i> Soutenir FXLIP
+            </button>
+        </div>
+
+        <footer class="footer">
+            <i class="fas fa-code"></i> avec <i class="fas fa-heart" style="color: #e74c3c;"></i> au Sénégal · © 2026 FXLIP
+        </footer>
+
+    </div>
+
+    <!-- POPUP WAVE -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Supporter FXLIP</h2>
+            <div class="wave-number" id="waveNumber">+221 70 767 27 92</div>
+            <button class="popup-btn" onclick="copyWave()">Copier le numéro</button>
+            <br />
+            <button class="popup-btn close" onclick="closePopup()">Fermer</button>
+        </div>
+    </div>
+
+    <script>
+               // ---------- THEME ----------
+        const toggleBtn = document.getElementById('themeToggle');
+        const icon = toggleBtn.querySelector('i');
+
+        let currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            icon.className = 'fas fa-sun';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            icon.className = 'fas fa-moon';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // ---------- POPUP ----------
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function copyWave() {
+            const number = document.getElementById('waveNumber').innerText;
+            navigator.clipboard.writeText(number).then(() => {
+                alert('Numéro Wave copié !');
+            }).catch(() => {
+                alert('Copie manuelle : ' + number);
+            });
+        }
+
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+
+        // ---------- CARROUSEL TÉMOIGNAGES ----------
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.dot');
+            const carousel = document.getElementById('testimonialCarousel');
+            let currentIndex = 0;
+            let intervalId = null;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active', 'exit');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.add('exit');
+                        setTimeout(() => {
+                            slide.classList.remove('exit');
+                        }, 600);
+                    }
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                const next = (currentIndex + 1) % slides.length;
+                showSlide(next);
+            }
+
+            function startAutoPlay() {
+                if (intervalId) clearInterval(intervalId);
+                intervalId = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoPlay() {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            }
+
+            dots.forEach((dot) => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (index !== currentIndex) {
+                        showSlide(index);
+                        startAutoPlay();
+                    }
+                });
+            });
+
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+            startAutoPlay();
+            showSlide(0);
+        });
+
+        // ---------- COMPTEUR DE VISITEURS ----------
+        (function() {
+            const counterKey = 'fxlip_visitor_count';
+            const sessionKey = 'fxlip_session_visited';
+            const START_VALUE = 3291; // Valeur de départ
+
+            // Fonction pour obtenir la valeur actuelle, avec correction si < START_VALUE
+            function getCurrentCount() {
+                let stored = localStorage.getItem(counterKey);
+                let count = parseInt(stored) || 0;
+                // Si la valeur stockée est inférieure à START_VALUE, on la corrige
+                if (count < START_VALUE) {
+                    count = START_VALUE;
+                    localStorage.setItem(counterKey, count);
+                }
+                return count;
+            }
+
+            if (!sessionStorage.getItem(sessionKey)) {
+                let count = getCurrentCount();
+                count++;
+                localStorage.setItem(counterKey, count);
+                sessionStorage.setItem(sessionKey, 'true');
+            }
+
+            // Affichage
+            const finalCount = getCurrentCount();
+            document.getElementById('visitorCount').textContent = finalCount.toLocaleString();
+        })();
+    </script>
+
+</body>
+</html>
