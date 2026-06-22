@@ -247,7 +247,7 @@
             transform: rotate(20deg) scale(1.1);
         }
 
-        /* ---------- BANDEAU D'ACCUEIL (message + compteur + réseaux) ---------- */
+        /* ---------- BANDEAU D'ACCUEIL ---------- */
         .welcome-banner {
             background: var(--card-bg);
             backdrop-filter: blur(8px);
@@ -524,7 +524,7 @@
             font-weight: 400;
         }
 
-        /* ---------- TÉMOIGNAGES (CARROUSEL) ---------- */
+        /* ---------- TÉMOIGNAGES ---------- */
         .testimonials-section {
             margin: 3rem 0;
             padding: 0.5rem;
@@ -711,7 +711,6 @@
             align-self: center;
         }
 
-        /* Indicateurs */
         .carousel-indicators {
             display: flex;
             justify-content: center;
@@ -1107,7 +1106,7 @@
             </button>
         </header>
 
-        <!-- BANDEAU D'ACCUEIL : Message + Compteur + Réseaux -->
+        <!-- BANDEAU D'ACCUEIL -->
         <div class="welcome-banner">
             <div class="welcome-message">
                 <i class="fas fa-bell"></i>
@@ -1118,10 +1117,10 @@
                 <span id="visitorCount">0</span> visiteurs
             </div>
             <div class="socials-banner">
-                <a class="social-link" href="https://www.tiktok.com/@fxlip_3003" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a class="social-link" href="https://www.instagram.com/fxlip_3003/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a class="social-link" href="https://x.com/fxlip__3003" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a class="social-link" href="https://www.youtube.com/@fxlip_3003" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a class="social-link" href="https://www.tiktok.com/@fxlip_3003"><i class="fab fa-tiktok"></i></a>
+                <a class="social-link" href="https://www.instagram.com/fxlip_3003/"><i class="fab fa-instagram"></i></a>
+                <a class="social-link" href="https://x.com/fxlip__3003"><i class="fab fa-x-twitter"></i></a>
+                <a class="social-link" href="https://www.youtube.com/@fxlip_3003"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
 
@@ -1251,23 +1250,23 @@
             <a href="mailto:peoplechoicesn@gmail.com" class="contact-item">
                 <i class="fas fa-envelope"></i> peoplechoicesn@gmail.com
             </a>
-            <a href="https://wa.me/221707672792" target="_blank" class="contact-item">
+            <a href="https://wa.me/221707672792" class="contact-item">
                 <i class="fab fa-whatsapp"></i> +221 70 767 27 92
             </a>
             <a href="mailto:peoplechoicesn@gmail.com" class="btn-primary">
                 <i class="fas fa-paper-plane"></i> Me contacter
             </a>
-            <a href="https://wa.me/221707672792" target="_blank" class="btn-primary btn-outline">
+            <a href="https://wa.me/221707672792" class="btn-primary btn-outline">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
         </section>
 
         <!-- RÉSEAUX SOCIAUX (bas) -->
         <div class="socials-bottom">
-            <a class="social-link" href="https://www.tiktok.com/@fxlip_3003" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a class="social-link" href="https://www.instagram.com/fxlip_3003/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a class="social-link" href="https://x.com/fxlip__3003" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a class="social-link" href="https://www.youtube.com/@fxlip_3003" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a class="social-link" href="https://www.tiktok.com/@fxlip_3003"><i class="fab fa-tiktok"></i></a>
+            <a class="social-link" href="https://www.instagram.com/fxlip_3003/"><i class="fab fa-instagram"></i></a>
+            <a class="social-link" href="https://x.com/fxlip__3003"><i class="fab fa-x-twitter"></i></a>
+            <a class="social-link" href="https://www.youtube.com/@fxlip_3003"><i class="fab fa-youtube"></i></a>
         </div>
 
         <!-- DON -->
@@ -1295,7 +1294,7 @@
     </div>
 
     <script>
-               // ---------- THEME ----------
+        // ---------- THEME ----------
         const toggleBtn = document.getElementById('themeToggle');
         const icon = toggleBtn.querySelector('i');
 
@@ -1406,13 +1405,11 @@
         (function() {
             const counterKey = 'fxlip_visitor_count';
             const sessionKey = 'fxlip_session_visited';
-            const START_VALUE = 3291; // Valeur de départ
+            const START_VALUE = 3291;
 
-            // Fonction pour obtenir la valeur actuelle, avec correction si < START_VALUE
             function getCurrentCount() {
                 let stored = localStorage.getItem(counterKey);
                 let count = parseInt(stored) || 0;
-                // Si la valeur stockée est inférieure à START_VALUE, on la corrige
                 if (count < START_VALUE) {
                     count = START_VALUE;
                     localStorage.setItem(counterKey, count);
@@ -1427,10 +1424,10 @@
                 sessionStorage.setItem(sessionKey, 'true');
             }
 
-            // Affichage
             const finalCount = getCurrentCount();
             document.getElementById('visitorCount').textContent = finalCount.toLocaleString();
         })();
     </script>
+
 </body>
 </html>
